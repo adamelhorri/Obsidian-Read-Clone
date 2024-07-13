@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Visualization</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="graph"></div>
+        <div id="divider"></div>
+        <div id="content">Cliquez sur un fichier .md pour voir son contenu</div>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const divider = document.getElementById('divider');
+            const container = document.getElementById('container');
+            let isDragging = false;
+
+            divider.addEventListener('mousedown', function(event) {
+                isDragging = true;
+            });
+
+            document.addEventListener('mousemove', function(event) {
+                if (isDragging) {
+                    const x = event.pageX - container.offsetLeft;
+                    divider.style.left = `${x}px`;
+                    document.getElementById('graph').style.width = `${x}px`;
+                    document.getElementById('content').style.left = `${x + 10}px`; // Adjust for padding
+                }
+            });
+
+            document.addEventListener('mouseup', function(event) {
+                isDragging = false;
+            });
+        });
+
+        function renderMarkdown(content) {
+            document.getElementById('content').innerHTML = marked.parse(content);
+        }
+    </script>
+</body>
+</html>

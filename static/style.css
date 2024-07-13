@@ -1,0 +1,81 @@
+body {
+    font-family: Calibri, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgb(38, 38, 38);
+}
+
+#container {
+    position: relative;
+    display: flex;
+    height: 100vh;
+}
+
+#graph {
+    width: 50%;
+    border-right: 1px solid #ccc;
+    overflow: hidden;
+}
+
+#divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background-color: #ccc;
+    cursor: ew-resize;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#content {
+    flex: 1;
+    padding: 10px;
+    overflow: auto;
+    position: -webkit-sticky;
+    color: white;
+}
+
+.node {
+    cursor: pointer;
+}
+
+.directory {
+    fill: rgb(0, 0, 128);
+}
+
+.file {
+    fill: rgb(128, 212, 242);
+}
+
+.link {
+    stroke: #999;
+    stroke-opacity: 0.6;
+}
+
+text {
+    fill: rgb(251, 251, 251);
+    font-size: 12px;
+    pointer-events: none;
+}
+
+#content p {
+    margin: 0;
+    line-height: 1;
+}
+
+#content h1,
+#content h2,
+#content h3,
+#content h4,
+#content h5,
+#content h6 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+hr {
+    visibility: hidden;
+}
